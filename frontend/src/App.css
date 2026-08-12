@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef7ee;
+  color: #183b1f;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.card {
+  width: 100%;
+  max-width: 650px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 8px;
+  color: #187a35;
+}
+
+h2 {
+  margin-top: 0;
+  color: #24552c;
+}
+
+p {
+  color: #5c6f60;
+}
+
+select,
+input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px;
+  border: 1px solid #c9d8cb;
+  border-radius: 10px;
+  background: #f8fbf8;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #198754;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #146c43;
+}
+
+button:disabled {
+  background: #9ab8a2;
+  cursor: not-allowed;
+}
+
+.result {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #edf8ef;
+  border: 1px solid #b9dfc0;
+}
+
+.result h3 {
+  margin-top: 0;
+  color: #187a35;
+}
+
+.error {
+  margin-top: 15px;
+  color: #c62828;
+  font-weight: bold;
+}

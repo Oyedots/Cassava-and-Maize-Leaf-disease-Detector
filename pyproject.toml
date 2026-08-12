@@ -1,0 +1,15 @@
+[project]
+name = "cassava-maize-leaf-disease-detector"
+version = "0.1.0"
+description = "AI model for detecting cassava and maize leaf diseases"
+requires-python = ">=3.10"
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scikit-learn",
+    "tensorflow",
+    "opencv-python",
+    "jupyter"
+]
