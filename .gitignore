@@ -1,12 +1,43 @@
-.venv/
+# Python
 __pycache__/
+*.py[codz]
 *.pyc
+.venv/
+env/
+venv/
 .env
 
+# Data and downloaded datasets
 data/
 *.zip
 
+# Python build files
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Frontend
 frontend/node_modules/
 frontend/dist/
 
-*.log
+# IDE
+.vscode/
+
+# Misc
+.DS_Store
