@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 
+const API_URL = "https://cassava-maize-disease-detector.onrender.com";
+
 function App() {
   const [crop, setCrop] = useState("cassava");
   const [file, setFile] = useState(null);
@@ -23,7 +25,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/predict/${crop}`,
+        `${API_URL}/predict/${crop}`,
         {
           method: "POST",
           body: formData,
@@ -38,7 +40,7 @@ function App() {
       setResult(data);
     } catch (err) {
       setError(
-        "Could not connect to the prediction server. Make sure FastAPI is running."
+        "Could not connect to the disease detection server. Please try again."
       );
     } finally {
       setLoading(false);
@@ -57,7 +59,14 @@ function App() {
 
         <label>Choose crop</label>
 
-        <select value={crop} onChange={(e) => setCrop(e.target.value)}>
+        <select
+          value={crop}
+          onChange={(e) => {
+            setCrop(e.target.value);
+            setResult(null);
+            setError("");
+          }}
+        >
           <option value="cassava">Cassava</option>
           <option value="maize">Maize</option>
         </select>
