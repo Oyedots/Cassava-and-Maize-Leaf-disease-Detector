@@ -26,14 +26,16 @@ models = {}
 class_names = {}
 
 for crop in ["cassava", "maize"]:
-    model_path = MODELS_DIR / f"{crop}_disease_model.keras"
+    model_path = MODELS_DIR / f"{crop}_saved_model"
     classes_path = MODELS_DIR / f"{crop}_classes.json"
 
     if model_path.exists() and classes_path.exists():
-        models[crop] = tf.keras.models.load_model(model_path)
+        models[crop] = tf.saved_model.load(str(model_path))
 
         with open(classes_path, "r", encoding="utf-8") as f:
             class_names[crop] = json.load(f)
+
+        print(f"{crop.upper()} MODEL LOADED")
 
 
 @app.get("/")
@@ -60,11 +62,17 @@ async def predict(crop: str, file: UploadFile = File(...)):
     image_array = np.array(image)
     image_array = np.expand_dims(image_array, axis=0)
 
-    predictions = models[crop].predict(image_array, verbose=0)
+    model = models[crop]
 
-    predicted_index = int(np.argmax(predictions[0]))
+    predictions = model.signatures["serving_default"](
+        tf.constant(image_array, dtype=tf.float32)
+    )
+
+    output = list(predictions.values())[0]
+
+    predicted_index = int(np.argmax(output.numpy()[0]))
     predicted_class = class_names[crop][predicted_index]
-    confidence = float(predictions[0][predicted_index]) * 100
+    confidence = float(output.numpy()[0][predicted_index]) * 100
 
     return {
         "crop": crop,
